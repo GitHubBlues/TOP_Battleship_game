@@ -1,7 +1,9 @@
 import "./index.css";
+import "./ui/modal.css";
 import {makeShip} from "./factories/shipFactory.js";
 import {makeBoard} from "./factories/gameboardFactory.js";
 import {makePlayer} from "./factories/playerFactory.js";
+import {makeWinnerWindow} from "./ui/modal.js";
 
 const player = makePlayer()
 const boardA = makeBoard()
@@ -41,6 +43,7 @@ for (let i=0; i<100; i++) {
 mainContainer.appendChild(boardLeft)
 mainContainer.appendChild(boardRight)
 
+
 let turn = "A"
 turnPlayerA()
 
@@ -60,6 +63,7 @@ function turnPlayerA() {
 
 function endGame(winner) {
     console.log(winner + "won")
+    makeWinnerWindow(winner);
 }
 
 function clickForAttack(e) {
@@ -100,3 +104,7 @@ function paintCellBackground(board) {
         }
     }
 }
+
+
+
+
