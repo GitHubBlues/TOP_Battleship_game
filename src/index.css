@@ -15,7 +15,13 @@ CSS rules to specify families
     font-family: 'Yantramanav', sans-serif; */
 *{
    box-sizing: border-box;
+   color: white;
 }
+
+body {
+    background-image: url("./img/atmospheric-gd70156f4b_1920.jpg");
+    /* background-color: #cccccc; */
+   }
 
 .main-container{
     display: flex;
