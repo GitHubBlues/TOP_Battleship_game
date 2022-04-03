@@ -1,3 +1,4 @@
+import "./modal.css";
 
 function makeWinnerWindow(winner) {
     const main = document.querySelector(".main-container")

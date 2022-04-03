@@ -40,7 +40,7 @@ describe('Receive attacks', () => {
 		board .placeShip([1,5])
 		board .placeShip([11,12,13,14,15])
 		board .receiveAttack(1)
-        board .receiveAttack(95)
+                board .receiveAttack(95)
 		board .receiveAttack(2)
 		board .receiveAttack(15)
 		expect( board.gbProgress ).toEqual( [0,1000,-99,0,0,0,0,0,0,0,0,0,0,0,0,1000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-99,0,0,0,0] );

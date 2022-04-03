@@ -1,9 +1,11 @@
 import "./index.css";
-import "./ui/modal.css";
+
 import {makeShip} from "./factories/shipFactory.js";
 import {makeBoard} from "./factories/gameboardFactory.js";
 import {makePlayer} from "./factories/playerFactory.js";
 import {makeWinnerWindow} from "./ui/modal.js";
+import {makeBoards} from "./ui/mainBoards.js"
+
 
 const player = makePlayer()
 const boardA = makeBoard()
@@ -18,30 +20,8 @@ boardB.placeShip( [65,66,67,68,69,30] )
 boardB.placeShip( [71,72,73,74,75,76,77,78,79] )
 console.log(boardB.dbShips)
 
-const mainContainer = document.querySelector(".main-container");
+makeBoards()
 
-const boardLeft = document.createElement("div");
-const boardRight = document.createElement("div");
-boardLeft.classList.add("board-left")
-boardRight.classList.add("board-right")
-
-for (let i=0; i<100; i++) {
-    let gridcell = document.createElement("div");
-    gridcell.classList.add("cell-left");
-    gridcell.classList.add("cell-"+ i.toString());
-    boardLeft.appendChild(gridcell);
-}
-
-for (let i=0; i<100; i++) {
-    let gridcell = document.createElement("div");
-    gridcell.classList.add("cell-right");
-    gridcell.classList.add("cell-"+ i.toString());
-    gridcell.addEventListener("click", clickForAttack);
-    boardRight.appendChild(gridcell);
-}
-
-mainContainer.appendChild(boardLeft)
-mainContainer.appendChild(boardRight)
 
 
 let turn = "A"
@@ -105,6 +85,4 @@ function paintCellBackground(board) {
     }
 }
 
-
-
-
+export {clickForAttack}
