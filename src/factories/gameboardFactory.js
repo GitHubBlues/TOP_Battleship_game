@@ -17,7 +17,8 @@ function makeBoard() {
   };  
 
   const getID = function( shipNr, attackCoord ) {
-      let shipCoordinates = gbShips.map( (element, index) => {
+    const coord =   attackCoord
+    let shipCoordinates = gbShips.map( (element, index) => {
         if (element == shipNr) {
           return index;
         }
@@ -26,29 +27,31 @@ function makeBoard() {
       shipCoordinates.sort(function(a, b) {
         return a - b;
       });
-
-      return shipCoordinates.indexOf(attackCoord);
+      console.log(shipCoordinates);
+      console.log(coord)  
+      console.log(shipCoordinates.findIndex( cr => cr == coord) );
+      return shipCoordinates.findIndex( cr => cr == coord);
     };
-   
+  
+  // const indexOf(arg, coord) {
+  //   return arg == coord,
+  // }  
  
-  const receiveAttack = function( coord ) {
-      const tmp = this.gbShips[coord];
-      console.log(tmp)
+  const receiveAttack = function( coordA ) {
+    const coord = coordA
+    console.log(coord)   
+    const tmp = this.gbShips[coord];
       if (tmp>0) {
         this.dbShips[ tmp-1 ].hit( getID(tmp, coord) )
         this.gbProgress[coord] = 1000;
-        console.log(gbProgress[coord])
-        console.log("Hello")
       } else {
         this.gbProgress[coord] = -99;
-        console.log(gbProgress[coord])
-        console.log("Bze")
       }
       return [coord, tmp]
   }
 
-  const allSunk = function( ) {
-      const sunkAll = dbShips.some( ( ship ) => ship.isSunk() === false);
+  const allSunk = function( shipDatabase ) {
+      const sunkAll = shipDatabase.some( ( ship ) => ship.isSunk() === false);
       if (sunkAll === true) {
           return false;
       } else {

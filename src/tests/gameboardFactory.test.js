@@ -56,7 +56,7 @@ describe('Sunk ships', () => {
         board .receiveAttack(1)
         board .receiveAttack(33)	
 		board .receiveAttack(5)	
-		expect( board.allSunk() ).toBe( false );
+		expect( board.allSunk( board.dbShips ) ).toBe( false );
 	});
 	test("sunk all", () => {
 		const board = makeBoard();
@@ -70,6 +70,6 @@ describe('Sunk ships', () => {
 		board.receiveAttack(13)	
 		board.receiveAttack(14)	
 		board.receiveAttack(15)			
-		expect( board.allSunk() ).toBe( true );
+		expect( board.allSunk( board.dbShips) ).toBe( true );
 	});
 });
