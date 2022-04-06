@@ -1,0 +1,81 @@
+.ship-container.vert {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+}
+
+.ship-container.horiz {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.button-container {
+    /* display: flex;
+    flex-direction: column; */
+    /* border: 4px solid orange; */
+    /* padding: 30px; */
+    
+}
+
+button {
+   border: 2px solid grey;
+   height: 40px;
+   width: 150px;
+   margin-left: 80px;
+   margin-top: 30px;
+   margin-bottom: 15px;
+   border-radius: 10px;
+} 
+
+.horizontal {
+    height: 50px;   
+    background-color: seagreen; 
+    margin: 12px;
+}
+
+.vertical  {
+    width: 50px;   
+    background-color: seagreen; 
+    margin: 12px;
+}
+
+.ship-01.horizontal {
+    width: 250px;
+}
+
+.ship-02.horizontal {
+    width: 200px;
+}
+
+.ship-03.horizontal {
+    width: 150px;
+}
+
+.ship-04.horizontal {
+    width: 150px;
+}
+
+.ship-05.horizontal {
+    width: 100px;
+}
+
+.ship-01.vertical {
+    height: 250px;
+}
+
+.ship-02.vertical {
+    height: 200px;
+}
+
+.ship-03.vertical {
+    height: 150px;
+}
+
+.ship-04.vertical {
+    height: 150px;
+}
+
+.ship-05.vertical {
+    height: 100px;
+}

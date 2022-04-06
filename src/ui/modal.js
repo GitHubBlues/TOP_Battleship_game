@@ -1,3 +1,4 @@
+import { makeBoardPlaceShips } from "./placeShips.js"
 import "./modal.css";
 
 function makeWinnerWindow(winner) {
@@ -16,6 +17,12 @@ function makeWinnerWindow(winner) {
     
     modalText.innerText = winner + " won!"
     modalBtn.innerText = "Play again"
+    modalBtn.addEventListener("click", () => { 
+        const mainContainer = document.querySelector(".main-container");
+        mainContainer.innerHTML = "";
+        makeBoardPlaceShips();
+        location.reload(true)
+    })
 }
 
-export{makeWinnerWindow}
+export{ makeWinnerWindow }

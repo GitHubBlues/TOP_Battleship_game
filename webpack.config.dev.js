@@ -11,6 +11,11 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, 'devdev'),
     },
   watch: true, 
+    resolve: {
+      fallback: {
+        util: require.resolve("util/")
+      }
+     }
   plugins: [new HtmlWebpackPlugin({
          template: "./src/template_index_dev.html",
          filename: "index.html"})

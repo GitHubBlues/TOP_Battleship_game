@@ -1,5 +1,6 @@
 import "./mainBoards.css";
-import {clickForAttack} from "../index.js";
+// import {clickForAttack} from "../control/playGame.js";
+import { playGame } from  "../control/playGame.js"
 
 function makeBoards() {
     const mainContainer = document.querySelector(".main-container");
@@ -20,7 +21,7 @@ function makeBoards() {
         gridcell.classList.add("cell-right");
         gridcell.classList.add("cell-"+ i.toString());
         boardRight.appendChild(gridcell);
-        gridcell.addEventListener("click", clickForAttack);
+        gridcell.addEventListener("click", playGame.clickForAttack);
     }
 
     mainContainer.appendChild(boardLeft)
