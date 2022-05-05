@@ -5,49 +5,27 @@ function makeBoard() {
   const gbProgress = new Array(100).fill(0);
   let dbShips = [];
   let id = 1;
-  let coord =  [];
 
   const placeShip = function(coord) {
-    // console.log(coord)
     for (let i=0; i<coord.length; i++) { 
        gbShips[coord[i]] = id; }
-    dbShips.push( makeShip(coord.length) );
+    dbShips.push( makeShip( coord) );
     id = id+1;
-    return [id, gbShips]
+    // return [id, gbShips]
   };  
-
-  const getID = function( shipNr, attackCoord ) {
-    const coord =   attackCoord
-    let shipCoordinates = gbShips.map( (element, index) => {
-        if (element == shipNr) {
-          return index;
-        }
-      });  
-      
-      shipCoordinates.sort(function(a, b) {
-        return a - b;
-      });
-      console.log(shipCoordinates);
-      console.log(coord)  
-      console.log(shipCoordinates.findIndex( cr => cr == coord) );
-      return shipCoordinates.findIndex( cr => cr == coord);
-    };
-  
-  // const indexOf(arg, coord) {
-  //   return arg == coord,
-  // }  
  
-  const receiveAttack = function( coordA ) {
-    const coord = coordA
-    console.log(coord)   
-    const tmp = this.gbShips[coord];
-      if (tmp>0) {
-        this.dbShips[ tmp-1 ].hit( getID(tmp, coord) )
-        this.gbProgress[coord] = 1000;
+  const receiveAttack = function( coordinate ) {
+    const coordA = coordinate;
+    const tmp = this.gbShips[coordA];
+      if ( (tmp>0) && (tmp<1000) ){
+        const hitShip =  this.dbShips[ tmp-1 ];
+        const idx = hitShip.coord.findIndex( (element) => element==coordA );
+        hitShip.hit( idx );
+        this.gbProgress[coordA] = 1000;
       } else {
-        this.gbProgress[coord] = -99;
+        this.gbProgress[coordA] = -99;
       }
-      return [coord, tmp]
+      // return [coordA, tmp]
   }
 
   const allSunk = function( shipDatabase ) {
@@ -58,7 +36,6 @@ function makeBoard() {
           return true;
       }
   } 
-
 
   return {
       gbShips, 

@@ -6,7 +6,6 @@ function makePlayer() {
               indices.push(i)
           } 
       }
-
       let tryCoord = Math.floor(Math.random() * (indices.length))
      
     return indices[tryCoord]

@@ -1,17 +1,14 @@
-function makeShip(arg) {
+function makeShip(coord) {
   return {
-    length: arg,
-    hitStatus: new Array(arg).fill(false),
+    length: coord.length,
+    coord: coord,
+    hitStatus: new Array(coord.length).fill(false),
     
     hit(loc) {
       this.hitStatus[loc] = true;
       return this.hitStatus;
     },
     
-    status() {
-      return this.hitStatus;
-    },
-
     isSunk() {
       if (this.hitStatus.includes(false)) {
         return false;
