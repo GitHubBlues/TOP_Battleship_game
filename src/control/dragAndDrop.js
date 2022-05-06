@@ -16,13 +16,13 @@ const dragNDrop = (() => {
         left: rect.left + window.scrollX,
         top: rect.top + window.scrollY
         };
-    }
+    };
 
     function _getShipOffset(ship01, cursorX, cursorY) { 
         let rect = ship01.getBoundingClientRect();
-        let rect_left = _getOffset(ship01).left
+        // let rect_left = _getOffset(ship01).left
         let rect_top = _getOffset(ship01).top
-        let go = true
+        // let go = true
         let length
         hzBelow = []
         hzAbove = []
@@ -42,24 +42,27 @@ const dragNDrop = (() => {
                 if ( cursorX - (i*50) > rect.left ) hzBelow.push(1) 
             }
         }
-        // console.log(rect)
-        // console.log(rect_top)
-        // console.log(rect_left)
-        // console.log(length)
-        // console.log(cursorX)
-        // console.log(cursorY)
-        // console.log(hzAbove)
-        // console.log(hzBelow)
-        // // console.log(vtAbove)
-        // // console.log(vtBelow)
-    }
+    };
 
     function dragOver(e) {
         e.preventDefault()
-    }
+    };
 
-    function dragEnter(e) {
-        let cellInventory
+    function draggedShipLength() {
+        if (draggedShip.classList.contains("ship-01")) {
+            return 5;
+        } else if (draggedShip.classList.contains("ship-02")) {
+            return 4;
+        } else if (draggedShip.classList.contains("ship-03")) {
+            return 3;
+        } else if (draggedShip.classList.contains("ship-04")) {
+            return 3;
+        } else if (draggedShip.classList.contains("ship-05")) {
+            return 2;
+        }           
+    };
+
+    function refreshBoard() {
         const allCells = document.querySelectorAll(".cell-placement")
         for (let i=0; i<=99; i++) {
             if (allCells[i].classList.contains("has-ship")) {
@@ -68,7 +71,11 @@ const dragNDrop = (() => {
                 allCells[i].style.backgroundColor = "transparent" 
             }
         }
-        // console.log('drag entered');
+    };
+
+    function dragEnter(e) {
+        let cellInventory
+        refreshBoard();
         if (e.target.classList.contains("dropzone")){
             let id = Number(e.target.classList[2].split("-")[2]);
 
@@ -85,14 +92,12 @@ const dragNDrop = (() => {
                 if ( candidates.includes(id - hzBelow.length) && candidates.includes(id + hzAbove.length) ) {
                     cellInventory = _getCellsHorizontalShip(id)
                     _changeBackgroundShip( cellInventory, "red", "papayawhip" )
-            } 
-    
-                     
-        } else {
-            _changeBackgroundShip( cellInventory, "red", "transparent" )
+                } 
+            } else {
+                _changeBackgroundShip( cellInventory, "red", "transparent" )
+            }
         }
-    }
-    }
+    };
 
     function _getCellsVerticalShip(id) {
         let cellList = []
@@ -104,8 +109,7 @@ const dragNDrop = (() => {
             cellList.push(id + i*10)
         }
         return cellList
-    }
-
+    };
 
     function _getCellsHorizontalShip(id) {
         let candidates = _getCandidatesHzShip(id)
@@ -119,7 +123,7 @@ const dragNDrop = (() => {
             cellList.push(id + i)
         }
         return cellList
-    }    
+    };   
 
     function _getCandidatesHzShip(id) {
         let candidates = []
@@ -128,7 +132,7 @@ const dragNDrop = (() => {
             candidates.push(row*10+i) 
         }
         return candidates
-    }
+    };
 
     function _changeBackgroundShip(cellList, colorError, colorOK) {
         for (let i=0; i<cellList.length; i++) {
@@ -140,11 +144,8 @@ const dragNDrop = (() => {
         }                
         for (let i=0; i<cellList.length; i++) {
             let cell = document.querySelector(".cell-place-"+ cellList[i].toString())            
-            cell.style.backgroundColor = colorOK //"papayawhip"
-        }
-        // console.log(cellList)
-        // e.target.style.backgroundColor = "papayawhip"
-    }
+            cell.style.backgroundColor = colorOK         }
+    };
 
     function _addClassToPlacedShips(cellList, shipid) {
         for (let i=0; i<cellList.length; i++) {
@@ -153,117 +154,90 @@ const dragNDrop = (() => {
             cell.classList.add( shipid )
             cellsWithShips.push(cellList[i])
         }
-    }
+    };
 
+    function dropShipVertical(e) {
+        let cellInventory
+        let id = Number(e.target.classList[2].split("-")[2]);
+        if ( (id - vtBelow.length*10  > -1) && (id + vtAbove.length*10  < 100) ) {
+            cellInventory = _getCellsVerticalShip(id)
+            if (cellInventory.length == draggedShipLength()) {
+                for (let i=0; i<cellInventory.length; i++) {
 
+                    if ( cellsWithShips.includes(cellInventory[i]) ) {
+                        return
+                    }
+                }
+                _changeBackgroundShip( cellInventory, "red", "seagreen" )
+                _addClassToPlacedShips( cellInventory, "sh-" + sID.toString() )
+                draggedShip.remove()
+                sID = sID + 1
+            }  
+        } 
+    };
 
-
-
-    // function dragLeave(e) {
-    // //    console.log('drag left');
-    //     let cellInventory
-    //     if (e.target.classList.contains("dropzone")){
-    //         let id = Number(e.target.classList[2].split("-")[2]);
-
-    //         if ((hzBelow.length + hzAbove.length)==0) {
-    //         // vertical ship
-    //             if ( (id - vtBelow.length*10  > -1) && (id + vtAbove.length*10  < 100) ) {
-    //                 cellInventory = _getCellsVerticalShip(id)
-    //                 _changeBackgroundShip( cellInventory, "transparent", "transparent" )
-    //             } else {
-    //                 e.target.style.backgroundColor = "transparent" 
-    //             }
-
-    //         } else if ( (vtBelow.length +  vtAbove.length)==0) {
-    //         // horizontal  ship
-    //             let candidates = _getCandidatesHzShip(id)
-    //             if ( candidates.includes(id - hzBelow.length) && candidates.includes(id + hzAbove.length) ) {
-    //                 cellInventory = _getCellsHorizontalShip(id)
-    //                 _changeBackgroundShip( cellInventory, "transparent", "transparent" )
-    //             } else {
-    //                 e.target.style.backgroundColor = "transparent" 
-    //             }
-    //         }
-    //     }
-    // }
+    function dropShipHorizontal(e) {
+        let cellInventory
+        let id = Number(e.target.classList[2].split("-")[2]);
+        let candidates = _getCandidatesHzShip(id)
+        if ( candidates.includes(id - hzBelow.length) && candidates.includes(id + hzAbove.length) ) {
+            cellInventory = _getCellsHorizontalShip(id)
+            if (cellInventory.length == draggedShipLength()) {
+                for (let i=0; i<cellInventory.length; i++) {
+                    if ( cellsWithShips.includes(cellInventory[i]) ) {
+                        return
+                    }
+                }
+                _changeBackgroundShip( cellInventory, "red", "seagreen" )
+                _addClassToPlacedShips( cellInventory,  "sh-" + sID.toString())
+                draggedShip.remove()
+                sID = sID + 1
+            }    
+        } 
+    };
 
     function dragDrop(e) {
         e.preventDefault();
+        console.log(e)
         const shipContainer = document.querySelector(".ship-container");
-        console.log('drag dropped');
-        let cellInventory
+        
         if (e.target.classList.contains("dropzone")){
-            let id = Number(e.target.classList[2].split("-")[2]);
-
-            if ((hzBelow.length + hzAbove.length)==0) {
-            // vertical ship
-                if ( (id - vtBelow.length*10  > -1) && (id + vtAbove.length*10  < 100) ) {
-                    cellInventory = _getCellsVerticalShip(id)
-                    for (let i=0; i<cellInventory.length; i++) {
-
-                        if ( cellsWithShips.includes(cellInventory[i]) ) {
-                            return
-                        }
-                    }
-                    _changeBackgroundShip( cellInventory, "red", "seagreen" )
-                    _addClassToPlacedShips( cellInventory, "sh-" + sID.toString() )
-                    draggedShip.remove()
-                    sID = sID + 1
-                } 
-
-            } else if ( (vtBelow.length +  vtAbove.length)==0) {
-            // horizontal  ship
-                let candidates = _getCandidatesHzShip(id)
-                if ( candidates.includes(id - hzBelow.length) && candidates.includes(id + hzAbove.length) ) {
-                    cellInventory = _getCellsHorizontalShip(id)
-                    for (let i=0; i<cellInventory.length; i++) {
-                        if ( cellsWithShips.includes(cellInventory[i]) ) {
-                           return
-                        }
-                    }
-                    _changeBackgroundShip( cellInventory, "red", "seagreen" )
-                    _addClassToPlacedShips( cellInventory,  "sh-" + sID.toString())
-                    draggedShip.remove()
-                    sID = sID + 1
-                }
+            if ((hzBelow.length + hzAbove.length)==0) {           //vertical ship
+                dropShipVertical(e)               
+            } else if ( (vtBelow.length +  vtAbove.length)==0) {  // horizontal  ship
+                    dropShipHorizontal(e)         
             }
-            
+                        
             if (shipContainer.childNodes.length == 0) { 
                 const button = document.querySelector(".button");
                 button.innerHTML = "start game"
                 button.removeEventListener("click", rotateShips)
                 button.addEventListener("click", playGame.startGame)
-            }
+            };
         }
-    }
-
-
+    };
 
     function dragStart(e){
-        // store a ref. on the dragged elem
         draggedShip = e.target;
-        // make it half transparent
         let cursorX = e.pageX
         let cursorY = e.pageY
         e.target.style.opacity = .5;
         e.dataTransfer.setData("text/plain", e.target.id);
         _getShipOffset( draggedShip, cursorX, cursorY)
-        console.log("This does work")
-    }
+    };
 
     function dragEnd(e) {
-        console.log("dragend")
         e.target.style.opacity = ""; 
-    }
+        refreshBoard();
+    };
 
     return { dragStart, 
              dragEnd,
              dragEnter,
-             //dragLeave,
              dragDrop,
              dragOver, 
              draggedShip
-    }
-})()
+    };
+})();
 
-export default dragNDrop
+export default dragNDrop;
