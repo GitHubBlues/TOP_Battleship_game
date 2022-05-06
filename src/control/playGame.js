@@ -1,11 +1,10 @@
-import {makeBoard} from "../factories/gameboardFactory.js";
-import {makeBoards} from "../ui/mainBoards.js"
-import {makePlayer} from "../factories/playerFactory.js";
+import { makeBoard } from "../factories/gameboardFactory.js";
+import { makeBoards } from "../ui/mainBoards.js"
+import { makePlayer } from "../factories/playerFactory.js";
 import { makeWinnerWindow } from "../ui/modal.js";
 import placeShipComputer from "./placeShipsComputer.js"
 
 const playGame = (() => { 
-    // console.log("test")
     const player = makePlayer()
     const boardA = makeBoard()
     const boardB = makeBoard()
@@ -21,27 +20,25 @@ const playGame = (() => {
             boardcells.forEach( (cell, index) => {
                 if ( cell.classList.contains( shipIDs[i]) ) {
                     shipCoord.push(index)
-
                 }   
             })
             boardB.placeShip( shipCoord )
         }
-    }
+    };
 
     function clearBoard() {
         const mainContainer = document.querySelector(".main-container");
         mainContainer.innerHTML = "";
-    }
+    };
 
     function startGame() {
-        placeShipPlayer()
-        clearBoard()
-        placeShipComputer.doPlacement( boardA )
-        makeBoards() 
-
-        turn = "A" // Computer starts
+        placeShipPlayer();
+        clearBoard();
+        placeShipComputer.doPlacement( boardA );
+        makeBoards(); 
+        turn = "A";      // Computer starts
         turnPlayerA(turn)
-    }
+    };
 
     function turnPlayerA(turn) {  
         let attackCoord
@@ -73,10 +70,6 @@ const playGame = (() => {
             } else if ( boardA.gbProgress[id] == 1000 ) {
                 gridcellRight[id].style.background = "green"
             }
-            console.log(boardB.allSunk(boardB.dbShips))
-            console.log(boardA.allSunk(boardA.dbShips))
-            console.log(boardA.dbShips)
-            console.log(boardB.dbShips)
 
             if ( boardA.allSunk(boardA.dbShips)) {
                 endGame("B")

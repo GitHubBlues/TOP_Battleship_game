@@ -1,18 +1,3 @@
-/* <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Yantramanav&display=swap" rel="stylesheet">
-
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Yantramanav&display=swap');
-</style> 
-
-
-CSS rules to specify families
-
-    font-family: 'Russo One', sans-serif;
-
-    font-family: 'Yantramanav', sans-serif; */
 *{
    box-sizing: border-box;
    color: white;

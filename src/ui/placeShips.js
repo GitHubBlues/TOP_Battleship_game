@@ -16,8 +16,30 @@ function makeBoardPlaceShips() {
     button.innerHTML = "rotate"
     button.addEventListener("click", rotateShips)
     buttonContainer.appendChild(button)
+    leftContainer.appendChild(buttonContainer)
+    leftContainer.appendChild(shipContainer)
+    mainContainer.appendChild(leftContainer)
 
+    const board = document.createElement("div");
+    board.classList.add("board-placement")
+    for (let i=0; i<100; i++) {
+        let gridcell = document.createElement("div");
+        gridcell.classList.add("cell-placement");
+        gridcell.classList.add("dropzone");
+        gridcell.classList.add("cell-place-"+ i.toString());
+        board.appendChild(gridcell);
+    }
+    mainContainer.appendChild(board)
+    board.addEventListener('dragover', dragNDrop.dragOver);
+    board.addEventListener('dragenter', dragNDrop.dragEnter);
+    board.addEventListener('drop', dragNDrop.dragDrop);
+
+    _addShips( shipContainer );
+}
+
+function _addShips( argShipContainer ) {
     for (let i=0; i<=4; i++) {
+        const shipContainer = argShipContainer;
         const ship01 = document.createElement("div")
         ship01.setAttribute("draggable", "true");
         ship01.classList.add("horizontal")
@@ -31,27 +53,6 @@ function makeBoardPlaceShips() {
         ship01.addEventListener("dragend", dragNDrop.dragEnd, false)
         shipContainer.appendChild(ship01)
     }
-    leftContainer.appendChild(buttonContainer)
-    leftContainer.appendChild(shipContainer)
-    mainContainer.appendChild(leftContainer)
-
-    const board = document.createElement("div");
-    board.classList.add("board-placement")
-    // board.classList.add("dropzone");
-    for (let i=0; i<100; i++) {
-        let gridcell = document.createElement("div");
-        gridcell.classList.add("cell-placement");
-        gridcell.classList.add("dropzone");
-        gridcell.classList.add("cell-place-"+ i.toString());
-        board.appendChild(gridcell);
-    }
-    mainContainer.appendChild(board)
-    board.addEventListener('dragover', dragNDrop.dragOver);
-    board.addEventListener('dragenter', dragNDrop.dragEnter);
-    // board.addEventListener('dragleave', dragDrop.dragLeave);
-    board.addEventListener('drop', dragNDrop.dragDrop);
-}
-
-
+};   
 
 export { makeBoardPlaceShips }

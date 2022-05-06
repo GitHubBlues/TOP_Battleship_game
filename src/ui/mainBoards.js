@@ -1,5 +1,4 @@
 import "./mainBoards.css";
-// import {clickForAttack} from "../control/playGame.js";
 import { playGame } from  "../control/playGame.js"
 
 function makeBoards() {
