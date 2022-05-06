@@ -9,7 +9,7 @@ module.exports = merge(common, {
   output: {
     filename: 'main.[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/TOP_Weather_site/', 
+    publicPath: '/TOP_Battleship_game/', 
     },
   
   plugins: [new HtmlWebpackPlugin({

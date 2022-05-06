@@ -15,7 +15,7 @@ module.exports = merge(common, {
       fallback: {
         util: require.resolve("util/")
       }
-     }
+     },
   plugins: [new HtmlWebpackPlugin({
          template: "./src/template_index_dev.html",
          filename: "index.html"})
