@@ -64,11 +64,11 @@ const playGame = (() => {
             const id = e.target.classList[1].split('-')[1]
             boardA.receiveAttack(id)
             if( boardA.gbProgress[id] == 0 ){
-                gridcellRight[id].style.background = "grey"
+                // gridcellRight[id].style.background = "grey"
             } else if ( boardA.gbProgress[id] == -99 ) {
-                gridcellRight[id].style.background = "orange"
+                gridcellRight[id].style.background = "slategrey"
             } else if ( boardA.gbProgress[id] == 1000 ) {
-                gridcellRight[id].style.background = "green"
+                gridcellRight[id].style.background = "orange"
             }
 
             if ( boardA.allSunk(boardA.dbShips)) {
@@ -83,11 +83,11 @@ const playGame = (() => {
         const gridcellLeft = document.querySelectorAll(".cell-left")
         for (let i=0; i<100; i++) {
             if( board.gbProgress[i] == 0 ){
-                gridcellLeft[i].style.background = "grey"
+                // gridcellLeft[i].style.background = "grey"
             } else if ( board.gbProgress[i] == -99 ) {
-                gridcellLeft[i].style.background = "orange"
+                gridcellLeft[i].style.background = "slategrey"
             } else if ( board.gbProgress[i] == 1000 ) {
-                gridcellLeft[i].style.background = "green"
+                gridcellLeft[i].style.background = "orange"
             }
         }
     }

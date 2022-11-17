@@ -15,7 +15,11 @@ function makeWinnerWindow(winner) {
     modalWindow.appendChild(modalBtn)
     main.appendChild(modalWindow)
     
-    modalText.innerText = winner + " won!"
+    if (winner=="A") {
+        modalText.innerText = "Bad news capitain, the bot won!"
+    } else  {
+        modalText.innerText = "Capitain, you won! Congratulations!" 
+    }
     modalBtn.innerText = "Play again"
     modalBtn.addEventListener("click", () => { 
         const mainContainer = document.querySelector(".main-container");

@@ -2,7 +2,8 @@
     position: relative; /*for positioning modal box*/
     display: flex;
     flex-direction: row;
-    border: 2px solid yellow;
+    justify-content: center;
+    margin-top: 4rem;
 }   
 
 .board-left,
@@ -13,13 +14,18 @@
     width: 504px;
     height: 504px;
     box-sizing: border-box;
+    margin: 2rem;
 }
 
 .cell-left,
 .cell-right {
     display: flex;
-    border: 3px solid orangered; 
+    border: 3px solid  cadetblue; 
     width: 50px;
     height: 50px;
     box-sizing: border-box;
+}
+
+.cell-left {
+    opacity: 0.5;
 }

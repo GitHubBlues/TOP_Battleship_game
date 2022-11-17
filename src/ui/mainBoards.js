@@ -25,6 +25,9 @@ function makeBoards() {
 
     mainContainer.appendChild(boardLeft)
     mainContainer.appendChild(boardRight)
+
+    const gameInstructions = document.querySelector(".main-instructions");
+    gameInstructions.innerText = "Start shooting at the enemy!"
 }
 
 export { makeBoards }

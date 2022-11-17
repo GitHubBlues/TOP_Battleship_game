@@ -66,7 +66,7 @@ const dragNDrop = (() => {
         const allCells = document.querySelectorAll(".cell-placement")
         for (let i=0; i<=99; i++) {
             if (allCells[i].classList.contains("has-ship")) {
-                allCells[i].style.backgroundColor = "seagreen" 
+                allCells[i].style.backgroundColor = "lightseagreen" 
             } else {
                 allCells[i].style.backgroundColor = "transparent" 
             }
@@ -168,7 +168,7 @@ const dragNDrop = (() => {
                         return
                     }
                 }
-                _changeBackgroundShip( cellInventory, "red", "seagreen" )
+                _changeBackgroundShip( cellInventory, "red", "lightseagreen" )
                 _addClassToPlacedShips( cellInventory, "sh-" + sID.toString() )
                 draggedShip.remove()
                 sID = sID + 1
@@ -188,7 +188,7 @@ const dragNDrop = (() => {
                         return
                     }
                 }
-                _changeBackgroundShip( cellInventory, "red", "seagreen" )
+                _changeBackgroundShip( cellInventory, "red", "lightseagreen" )
                 _addClassToPlacedShips( cellInventory,  "sh-" + sID.toString())
                 draggedShip.remove()
                 sID = sID + 1

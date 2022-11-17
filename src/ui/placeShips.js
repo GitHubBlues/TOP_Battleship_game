@@ -13,7 +13,7 @@ function makeBoardPlaceShips() {
 
     const button = document.createElement("button");
     button.classList.add("button")
-    button.innerHTML = "rotate"
+    button.innerHTML = "rotate ships"
     button.addEventListener("click", rotateShips)
     buttonContainer.appendChild(button)
     leftContainer.appendChild(buttonContainer)
