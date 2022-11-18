@@ -32,10 +32,23 @@ const playGame = (() => {
     };
 
     function startGame() {
+        let mainContainer = document.querySelector(".main-container");
+        console.log('a')
+        console.log(mainContainer)
         placeShipPlayer();
+        mainContainer = document.querySelector(".main-container");
+        console.log('b')
+        console.log(mainContainer)
         clearBoard();
+        mainContainer = document.querySelector(".main-container");
+        console.log('c')
+        console.log(mainContainer)
         placeShipComputer.doPlacement( boardA );
         makeBoards(); 
+        console.log('d')
+        mainContainer = document.querySelector(".main-container");
+        console.log('e')
+        console.log(mainContainer)
         turn = "A";      // Computer starts
         turnPlayerA(turn)
     };
